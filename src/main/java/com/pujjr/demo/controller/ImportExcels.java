@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-public class ImportAndExportExcels {
+public class ImportExcels {
 
     //文件存放路径
     private static final String ExcelsPath = "E:/GitProjects/excelExercise/src/main/resources/static/Excels/";
@@ -33,7 +33,6 @@ public class ImportAndExportExcels {
     @PostMapping("/toImport")
     @ResponseBody
     public Object toImport(MultipartFile file) throws Exception {
-        System.out.println("进入该方法了！");
         String fileSuffix = Utils.getFileSuffix(file.getOriginalFilename());
         if(!fileSuffix.equals(".xlsx") && !fileSuffix.equals(".xls") ){
             return new JsonData("1","提示信息：上传文件格式不正确！");

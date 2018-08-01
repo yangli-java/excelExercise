@@ -3,7 +3,7 @@ package com.pujjr.demo.doman;
 import java.io.Serializable;
 
 public class JsonData implements Serializable {
-    private static final Long SerialVersionUID = 1L;
+    private static final long serialVersionUID = -1421305351766472736L;
     //返回结果的状态码，0-成功，1-失败
     private String ResultCode;
     //返回结果提示信息
