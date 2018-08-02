@@ -56,12 +56,21 @@
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <!--关于Excel的poi-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.poi</groupId>-->
-            <!--<artifactId>poi</artifactId>-->
-            <!--<version>3.17</version>-->
-        <!--</dependency>-->
-
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.17</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
         <!--关于字体的配置-->
         <dependency>

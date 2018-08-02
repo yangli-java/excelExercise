@@ -35,12 +35,12 @@ public abstract class ExcelView extends AbstractXlsView {
         Font font = workbook.createFont();
 
         //设置单元格前景颜色
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+//        style.setFillForegroundColor(HSSFColor.BLUE.index);
         //setFillPattern是设置单元格填充样式，SOLID_FOREGROUND纯色使用前景颜色填充
-        style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+//        style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
         //可以为宋体，微软雅黑等
         font.setFontName("Arial");
-        font.setColor(HSSFColor.WHITE.index);
+//        font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
 
         //设置表头

@@ -7,9 +7,10 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, userName, password, address, birthday
+    id, userName, password, address, birthday,sex
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select

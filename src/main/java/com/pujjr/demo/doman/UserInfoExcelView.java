@@ -1,8 +1,11 @@
 package com.pujjr.demo.doman;
 
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +29,18 @@ public class UserInfoExcelView extends ExcelView  {
             userRow.createCell(1).setCellValue(list.get(i).getUsername());
             userRow.createCell(2).setCellValue(list.get(i).getPassword());
             userRow.createCell(3).setCellValue(list.get(i).getAddress());
-            userRow.createCell(4).setCellValue(list.get(i).getBirthday());
+            Date birthday = list.get(i).getBirthday();
+            String textValue = null;
+            //时间格式的转换
+            if (birthday instanceof Date)
+            {
+                Date date =  birthday;
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                textValue = sdf.format(date);
+            }
+            HSSFRichTextString richString = new HSSFRichTextString(textValue);
+//            userRow.createCell(4).setCellValue(list.get(i).getBirthday());
+            userRow.createCell(4).setCellValue(richString);
             userRow.createCell(5).setCellValue(list.get(i).getSex());
         }
     }

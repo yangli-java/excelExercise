@@ -22,13 +22,13 @@ public class User {
     private Date birthday;
 
     @JsonProperty("性别")
-    private String sex;
+    private Integer sex;
 
     public String getSex() {
-        return sex == "0" ? "男" : "女";
+        return sex == 0 ? "男" : "女";
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
