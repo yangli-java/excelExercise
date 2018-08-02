@@ -1,7 +1,12 @@
 package com.pujjr.demo.dao;
 
 import com.pujjr.demo.doman.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Mapper
 public interface UserMapper {
 
     int deleteByPrimaryKey(Integer id);
@@ -15,4 +20,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectAll();
 }

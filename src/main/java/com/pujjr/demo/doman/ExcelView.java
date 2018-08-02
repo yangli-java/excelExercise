@@ -17,7 +17,7 @@ import java.util.Map;
 public abstract class ExcelView extends AbstractXlsView {
 
     @Override
-    protected void buildExcelDocument(Map<String, Object> map,
+    public void buildExcelDocument(Map<String, Object> map,
                                       Workbook workbook,
                                       HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
@@ -25,8 +25,8 @@ public abstract class ExcelView extends AbstractXlsView {
         response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(excelName,"utf-8"));
         response.setContentType("application/ms-excel; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        @SuppressWarnings("unchecked")
-        List<User> list = (List<User>) map.get("members");
+//        @SuppressWarnings("unchecked")
+//        List<User> list = (List<User>) map.get("members");
         Sheet sheet = workbook.createSheet("用户信息表");
         //设置每一列可装的字符长度
         sheet.setDefaultColumnWidth(10);
@@ -44,23 +44,13 @@ public abstract class ExcelView extends AbstractXlsView {
         style.setFont(font);
 
         //设置表头
-        Row header = sheet.createRow(0);
+//        Row header = sheet.createRow(0);
 //        String[] UserSheet = {"编码","用户名","密码","地址","生日","性别"};
-        List<String> titles = getTitlesByClass(User.class);
-        for (int i = 0; i < titles.size(); i++) {
-            header.createCell(i).setCellValue(titles.get(i));
-        }
-        //给每一个单元格赋值
-        for (int i = 0; i < list.size() ; i++) {
-            int rowCount = i+1;
-            Row userRow = sheet.createRow(rowCount);
-            userRow.createCell(0).setCellValue(list.get(i).getId());
-            userRow.createCell(1).setCellValue(list.get(i).getUsername());
-            userRow.createCell(2).setCellValue(list.get(i).getPassword());
-            userRow.createCell(3).setCellValue(list.get(i).getAddress());
-            userRow.createCell(4).setCellValue(list.get(i).getBirthday());
-            userRow.createCell(5).setCellValue(list.get(i).getSex());
-        }
+//        List<String> titles = getTitlesByClass(User.class);
+//        for (int i = 0; i < UserSheet.length; i++) {
+//            header.createCell(i).setCellValue(UserSheet[i]);
+//        }
+        setRow(sheet, map);
 
     }
 
@@ -82,5 +72,7 @@ public abstract class ExcelView extends AbstractXlsView {
         }
         return list;
     }
+
+    public abstract void setRow(Sheet sheet, Map<String, Object> map);
 }
 
