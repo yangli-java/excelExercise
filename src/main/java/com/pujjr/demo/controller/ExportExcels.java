@@ -142,7 +142,9 @@ public class ExportExcels {
             }
         }
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-disposition", "attachment;filename=createList.xls");//默认Excel名称
+        //默认Excel名称
+        String fileName = "用户明细表.xls";
+        response.setHeader("Content-disposition", "attachment;filename="+java.net.URLEncoder.encode(fileName, "UTF-8"));
         response.flushBuffer();
         workbook.write(response.getOutputStream());
 
