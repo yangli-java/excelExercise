@@ -17,7 +17,7 @@
 		
 		<javaModelGenerator targetPackage="com.pujjr.demo.doman"
 			targetProject="../java" />
-		<sqlMapGenerator targetPackage="com.pujjr.demo.mapper"
+		<sqlMapGenerator targetPackage="mapper"
 			targetProject="../java" />
 		<javaClientGenerator targetPackage="com.pujjr.demo.dao"
 							 targetProject="../java" type="XMLMAPPER" />

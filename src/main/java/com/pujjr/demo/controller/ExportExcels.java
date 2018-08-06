@@ -67,13 +67,15 @@ public class ExportExcels {
     @RequestMapping(value = "/download")
     public void downstudents(HttpServletRequest request, HttpServletResponse response) throws IOException, InvocationTargetException {  //我这是根据前端传来的起始时间来查询数据库里的数据，如果没有输入变量要求，保留前两个就行}
         String[] headers = {"编码","用户名","密码","地址","生日","性别"};
+        //从数据库获取到所需数据
         List<User> userList = userMapper.selectAll();
         // 声明一个工作薄
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 生成一个表格
         HSSFSheet sheet = workbook.createSheet();
-        // 设置表格默认列宽度为15个字节
+        // 设置表格默认列宽度为18个字节
         sheet.setDefaultColumnWidth((short) 18);
+        //创建Excel表的第一行，即表头，将表头数组headers赋值进去
         HSSFRow row = sheet.createRow(0);
         for (short i = 0; i < headers.length; i++) {
             HSSFCell cell = row.createCell(i);
@@ -85,22 +87,26 @@ public class ExportExcels {
         int index = 0;
         while (it.hasNext()) {
             index++;
-            //创建第i+1行
+            //创建第index行,从1开始，即第二行
             row = sheet.createRow(index);
             User user = (User) it.next();
             //利用反射，根据javabean属性的先后顺序，动态调用getXxx()方法得到属性值
-            Field[] fields = user.getClass().getDeclaredFields();
+            Field[] fields = user.getClass().getDeclaredFields(); //Field[] fields获取到该类的属性的数组
             for (short i = 0; i < fields.length; i++) {
+                //创建第i列
                 HSSFCell cell = row.createCell(i);
+                //获取第i个属性的属性名
                 Field field = fields[i];
                 String fieldName = field.getName();
+                //通过拼接字符串的方式，获取到该属性的get方法。
                 String getMethodName = "get"
                         + fieldName.substring(0, 1).toUpperCase()
                         + fieldName.substring(1);
                 try {
                     Class tCls = user.getClass();
+                    //执行getter方法
                     Method getMethod = tCls.getMethod(getMethodName,
-                            new Class[]{});
+                            new Class[]{});  //new Class[]{}表示该方法需要些什么参数，此处为空，即表示该方法不需要参数。
                     Object value = getMethod.invoke(user, new Object[]{});
                     String textValue = null;
 
@@ -121,6 +127,7 @@ public class ExportExcels {
                     HSSFFont font3 = workbook.createFont();
                     font3.setColor(HSSFColor.BLUE.index);//定义Excel数据颜色
                     richString.applyFont(font3);
+                    //给单元格赋值
                     cell.setCellValue(richString);
 
                 } catch (SecurityException e) {
