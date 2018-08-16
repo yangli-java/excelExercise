@@ -66,6 +66,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!--关于自定义异常的依赖配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+
         <!--************************springboot相关配置结束*****************************-->
 
         <!--关于BeetSql的配置-->
