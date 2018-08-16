@@ -1,8 +1,10 @@
 package com.pujjr.demo.controller;
 
 import com.pujjr.demo.doman.JsonData;
+import com.pujjr.demo.doman.MyEcxeptionHandle;
 import com.pujjr.demo.doman.Students;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +33,16 @@ public class GlobalExceptionsController {
     public Object exceptionHandle(Exception e, HttpServletRequest request){//还可以通过request获取到更多的请求信息
         JsonData jsonData = new JsonData("1", "失败原因: " + e.getMessage() + ";失败路径: " + request.getRequestURI());
         return jsonData;
+    }
+
+    //自定义异常处理
+    @ExceptionHandler(value = MyEcxeptionHandle.class)
+    public Object myExceptionHandle(MyEcxeptionHandle e){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("error.html");
+        modelAndView.addObject("ResultCode",e.getCode());
+        modelAndView.addObject("Message",e.getResponseMsg());
+        return modelAndView;
     }
 
 
