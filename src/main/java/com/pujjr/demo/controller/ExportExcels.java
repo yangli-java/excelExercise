@@ -34,7 +34,7 @@ public class ExportExcels {
     private UserMapper userMapper;
 
     /**
-     * 此种方法poi只能在3.14版本一下的才得行
+     *
      * 参考https://blog.csdn.net/wang124454731/article/details/73850645
      * @param request
      * @param response
